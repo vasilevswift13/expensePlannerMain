@@ -26,6 +26,23 @@
 		63DD1E692FC0C33A000AA058 /* ExpensePlannerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpensePlannerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		354DDF702FC1AE97002329C8 /* Exceptions for "ExpensePlannerTests" folder in "ExpensePlanner" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Mocks/NetworkServiceMock.swift,
+			);
+			target = 16B0F9962F7C245200B9CDC2 /* ExpensePlanner */;
+		};
+		354DDF712FC1AE97002329C8 /* Exceptions for "ExpensePlannerTests" folder in "ExpensePlannerTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Mocks/NetworkServiceMock.swift,
+			);
+			target = 63DD1E682FC0C33A000AA058 /* ExpensePlannerTests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		16B0F9992F7C245200B9CDC2 /* ExpensePlanner */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -34,6 +51,10 @@
 		};
 		63DD1E6A2FC0C33A000AA058 /* ExpensePlannerTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				354DDF702FC1AE97002329C8 /* Exceptions for "ExpensePlannerTests" folder in "ExpensePlanner" target */,
+				354DDF712FC1AE97002329C8 /* Exceptions for "ExpensePlannerTests" folder in "ExpensePlannerTests" target */,
+			);
 			path = ExpensePlannerTests;
 			sourceTree = "<group>";
 		};
