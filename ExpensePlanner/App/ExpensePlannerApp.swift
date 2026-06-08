@@ -5,9 +5,10 @@
 //  Created by Igor Lebedev on 31.03.26.
 //
 
-import FirebaseCore
+import Firebase
 import SwiftData
 import SwiftUI
+
 
 @main
 struct ExpensePlannerApp: App {
@@ -30,7 +31,9 @@ struct ExpensePlannerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ExpenseContentView()
+//            RegistrationView()
+//            ExpenseContentView()
+            AppRootView()
         }
         .modelContainer(for: [TodoTask.self]) // контейнер базы данных, тут все хранится
     }
