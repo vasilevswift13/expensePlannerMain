@@ -12,9 +12,12 @@ import GoogleSignIn
 class FirebaseManager {
     
     private let googleService: GoogleSignInServiceProtocol
+    private let facebookService: FacebookSignInServiceProtocol
     
-    init(googleService: GoogleSignInServiceProtocol = GoogleSignInService()) {
+    init(googleService: GoogleSignInServiceProtocol = GoogleSignInService(),
+    facebookService: FacebookSignInServiceProtocol = FacebookSignInService()) {
         self.googleService = googleService
+        self.facebookService = facebookService
     }
     
     
@@ -35,6 +38,16 @@ class FirebaseManager {
         let authResult = try await Auth.auth().signIn(with: credential)
         print(" Вход через Google успешен, UID: \(authResult.user.uid)")
     }
+    
+    
+    // вход через ФБ
+    
+    func signInWithFacebook() async throws {
+            let credential = try await facebookService.signIn()
+            let authResult = try await Auth.auth().signIn(with: credential)
+            print("Вход через Facebook успешен, UID: \(authResult.user.uid)")
+        }
+
     
 }
 

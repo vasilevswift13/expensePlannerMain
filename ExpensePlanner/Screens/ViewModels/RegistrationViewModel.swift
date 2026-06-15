@@ -114,4 +114,23 @@ final class RegistrationViewModel: ObservableObject {
         }
     }
     
+    
+    func signInWithFacebook() async {
+        isLoading = true
+        defer { isLoading = false }
+        
+        do {
+            try await manager.signInWithFacebook()
+            
+            if let email = Auth.auth().currentUser?.email {
+                keychainManager.save(email: email, password: "")
+            }
+            isAuthenticated = true
+        } catch {
+            errorMessage = error.localizedDescription
+            showError = true
+        }
+    }
+    
+    
 }

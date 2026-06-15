@@ -67,6 +67,17 @@ struct RegistrationView: View {
             .cornerRadius(10)
             .padding(.horizontal)
             
+            Button("Войти через Facebook") {
+                Task {
+                    await registrationViewModel.signInWithFacebook()
+                }
+            }
+            .foregroundColor(.white)
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(Color.blue)
+            .cornerRadius(10)
+            .padding(.horizontal)
             
             Button("Очистить данные") {
                 registrationViewModel.claerSavedCredentials()

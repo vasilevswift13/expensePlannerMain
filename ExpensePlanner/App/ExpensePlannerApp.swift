@@ -10,6 +10,8 @@ import SwiftData
 import SwiftUI
 
 
+
+
 @main
 struct ExpensePlannerApp: App {
     //    var sharedModelContainer: ModelContainer = {
@@ -24,7 +26,7 @@ struct ExpensePlannerApp: App {
     //            fatalError("Could not create ModelContainer: \(error)")
     //        }
     //    }()
-    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     init() {
         FirebaseApp.configure()
     }
