@@ -23,6 +23,7 @@ final class ExpensePlannerViewModel {
     // Dependencies
     private let service: INetworkService
     private var context: ModelContext
+    private let repository: TaskRepositoryProtocol
 
     // Properties
     var selectedDate = Date()
@@ -33,6 +34,7 @@ final class ExpensePlannerViewModel {
     init(service: INetworkService = NetworkServiceMock(), context: ModelContext) {
         self.service = service
         self.context = context
+        self.repository = TaskRepository(context: context)
     }
 
     func loadTasks() async {

@@ -11,16 +11,26 @@ enum TodoTaskMapper {
     static func map(from dto: TodoTaskDTO) -> TodoTask {
         let calendar = Calendar.current
         let today = Date()
+        let now = Date()
 
-        let offset = dto.id % 7
-        let price = dto.userId * 10
-        let date = calendar.date(byAdding: .day, value: offset, to: today) ?? today
+        // id и userId уже строки, используем их как есть
+        let userId = dto.userId
+        let title = dto.title
+        let isCompleted = dto.completed
+        let date = dto.date // используем дату из DTO
+        let cost = dto.cost
+        let createdAt = dto.createdAt
+        let updatedAt = dto.updatedAt
 
         return TodoTask(
-            title: dto.title,
+            userId: userId,
+            title: title,
             date: date,
-            cost: price,
-            isCompleted: dto.completed
+            cost: cost,
+            isCompleted: isCompleted,
+            createdAt: createdAt,
+            updatedAt: updatedAt,
+            isSynced: true // данные с сервера считаем синхронизированными
         )
     }
 }

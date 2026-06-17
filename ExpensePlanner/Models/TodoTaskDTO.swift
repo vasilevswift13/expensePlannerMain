@@ -10,8 +10,12 @@
 import Foundation
 
 struct TodoTaskDTO: Codable {
-    let id: Int
-    let userId: Int
+    let id: String
+    let userId: String
     let title: String
     let completed: Bool
+    let date: Date
+    let cost: Int
+    let createdAt: Date
+    let updatedAt: Date
 }
