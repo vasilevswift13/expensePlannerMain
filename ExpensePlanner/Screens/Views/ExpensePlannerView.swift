@@ -67,12 +67,22 @@ struct ExpensePlannerView: View {
     private var contentBlock: some View {
         if viewModel.loadingState == .loading {
             LoadingView()
-        } else if viewModel.selectedDayTasks.isEmpty {
-            EmptyStateView(systemImage: "exclamationmark.bubble", title: "No tasks", message: "Please add new task")
         } else if viewModel.loadingState == .error {
             ErrorView()
         } else {
-            tasksSection
+            // Кнопка добавления тестовой задачи (всегда видна)
+            Button("Add test task") {
+                Task {
+                    try? await viewModel.addTask(title: "Test task", cost: 100, date: Date())
+                }
+            }
+            .padding()
+            
+            if viewModel.selectedDayTasks.isEmpty {
+                EmptyStateView(systemImage: "exclamationmark.bubble", title: "No tasks", message: "Please add new task")
+            } else {
+                tasksSection
+            }
         }
     }
 

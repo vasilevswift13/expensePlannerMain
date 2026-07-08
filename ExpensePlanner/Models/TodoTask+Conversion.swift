@@ -10,7 +10,7 @@ import Foundation
 // MARK: = TodoTask -> TodoTaskDTO
 extension TodoTaskDTO {
     init(from task: TodoTask) {
-        self.id = task.id.uuidString
+        self.id = task.id.uuidString      // UUID → String
         self.userId = task.userId
         self.title = task.title
         self.completed = task.isCompleted
@@ -21,11 +21,11 @@ extension TodoTaskDTO {
     }
 }
 
-
-// MARK: - TodoTaskDTO -> TodoTask
-
 extension TodoTask {
     convenience init(from dto: TodoTaskDTO) {
+        guard let uuid = UUID(uuidString: dto.id) else {
+            fatalError("Invalid UUID string") // или обработка ошибки
+        }
         self.init(
             userId: dto.userId,
             title: dto.title,

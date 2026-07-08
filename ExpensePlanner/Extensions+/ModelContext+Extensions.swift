@@ -46,5 +46,4 @@ extension ModelContext {
         let descriptor = FetchDescriptor<TodoTask>(predicate: predicate)
         return try fetch(descriptor).first
     }
-    
 }

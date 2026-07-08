@@ -47,8 +47,6 @@ class FirebaseManager {
             let authResult = try await Auth.auth().signIn(with: credential)
             print("Вход через Facebook успешен, UID: \(authResult.user.uid)")
         }
-
-    
 }
 
 

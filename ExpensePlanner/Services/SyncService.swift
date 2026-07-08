@@ -49,7 +49,6 @@ final class SyncService: SyncServiceProtocol {
     }
     
     
-    
     // MARK: - синхроним несколько задач
     
     func syncTasks(_ tasks: [TodoTaskDTO]) async throws {
@@ -63,6 +62,4 @@ final class SyncService: SyncServiceProtocol {
         
         try await batch.commit()
     }
-    
-    
 }
