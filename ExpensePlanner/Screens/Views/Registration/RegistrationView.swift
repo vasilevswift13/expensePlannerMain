@@ -79,6 +79,20 @@ struct RegistrationView: View {
             .cornerRadius(10)
             .padding(.horizontal)
             
+            Button("Войти по Face ID / Touch ID") {
+                Task {
+                    await registrationViewModel.signInWithBiometrics()
+                }
+            }
+            .foregroundColor(.white)
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(Color.purple)
+            .cornerRadius(10)
+            .padding(.horizontal)
+            
+            
+            
             Button("Очистить данные") {
                 registrationViewModel.claerSavedCredentials()
             }

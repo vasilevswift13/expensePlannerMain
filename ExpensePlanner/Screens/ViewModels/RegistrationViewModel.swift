@@ -133,4 +133,50 @@ final class RegistrationViewModel: ObservableObject {
     }
     
     
+    func signInWithBiometrics() async {
+        // проверяем если у нас сохраненные дынные в Keychain
+        guard let email = keychainManager.getEmail(),
+              let password = keychainManager.getPassword(email: email) else {
+            errorMessage = " Сохраненные данные для входа не найдены. Войдите вручную."
+            showError = true
+            return
+            
+        }
+    
+        // проверяем, доступна ли биометрия
+    let biometricService = BiometricService()
+        guard biometricService.canUseBiometrics() else {
+            errorMessage = "Face ID или Touch ID недоступны на этом устройстве. Войдите вручную."
+            showError = true
+            return
+        }
+        
+        isLoading = true
+        
+        defer { isLoading = false }
+        
+        do {
+            
+            // запрашиваем биометрию
+            
+            _ = try await biometricService.authenticate()
+            
+            // если биометрия успешна - делаем вход через Firebase
+            
+            let user = UserData(email: email, password: password)
+            try await manager.signIn(user: user)
+            
+            // сохраняем дынные в Keychain на всякий случай и переключаем экран
+            keychainManager.save(email: email, password: password)
+            isAuthenticated = true
+        } catch {
+            // обробатываем ошибки биометрии или входа
+            errorMessage = error.localizedDescription
+            showError = true
+        }
+        
+        
+    }
+    
+    
 }

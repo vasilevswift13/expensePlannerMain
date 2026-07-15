@@ -2,42 +2,35 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>FacebookAppID</key>
-    <string>1019218807278235</string>
-    <key>FacebookClientToken</key>
-    <string>dde7a2d6a38d5dba8367ae29af388b83</string>
-    <key>FacebookDisplayName</key>
-    <string>ExpensePlanner</string>
-
-    <key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>com.googleusercontent.apps.621286255032-8hpel6l374kcl6nn05cuepqkudfjm11c</string>
-            </array>
-        </dict>
-        <dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>fb1019218807278235</string>
-            </array>
-        </dict>
-    </array>
-
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>fbapi</string>
-        <string>fb-messenger-share-api</string>
-    </array>
-
-    <!-- Новая строка для запроса отслеживания (iOS 14.5+) -->
-    <key>NSUserTrackingUsageDescription</key>
-    <string>Это позволяет вам входить через Facebook.</string>
-
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.621286255032-8hpel6l374kcl6nn05cuepqkudfjm11c</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1019218807278235</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>1019218807278235</string>
+	<key>FacebookClientToken</key>
+	<string>dde7a2d6a38d5dba8367ae29af388b83</string>
+	<key>FacebookDisplayName</key>
+	<string>ExpensePlanner</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+	</array>
 </dict>
 </plist>
