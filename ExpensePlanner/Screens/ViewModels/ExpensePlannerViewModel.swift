@@ -45,37 +45,37 @@ final class ExpensePlannerViewModel {
             try fetchTasks()
             print("2 Локальные задачи загружены, count: \(tasks.count)")
             
-            if tasks.isEmpty {
-                print("3 Локальных задач нет, загружаем из сети")
-                let remoteTasks = try await service.fetchTasks()
-                print("4 Загружено из сети: \(remoteTasks.count)")
-                
-                // Получаем текущий uid пользователя
-                guard let userId = Auth.auth().currentUser?.uid else {
-                    print("Ошибка - пользователь не авторизован")
-                    loadingState = .error
-                    return
-                }
-                print("Используем userId: \(userId)")
-                
-                for task in remoteTasks {
-                    // Создаём новую задачу с правильным userId
-                    let newTask = TodoTask(
-                        userId: userId,
-                        title: task.title,
-                        date: task.date,
-                        cost: task.cost,
-                        isCompleted: task.isCompleted,
-                        createdAt: task.createdAt,
-                        updatedAt: task.updatedAt,
-                        isSynced: false // пока не синхронизирована
-                    )
-                    try await repository.createTask(newTask)
-                    print("5 Задача создана локально и отправлена в Firestore")
-                }
-                try fetchTasks()
-                print("6 Локальные задачи обновлены")
-            }
+//            if tasks.isEmpty {
+//                print("3 Локальных задач нет, загружаем из сети")
+//                let remoteTasks = try await service.fetchTasks()
+//                print("4 Загружено из сети: \(remoteTasks.count)")
+//                
+//                // Получаем текущий uid пользователя
+//                guard let userId = Auth.auth().currentUser?.uid else {
+//                    print("Ошибка - пользователь не авторизован")
+//                    loadingState = .error
+//                    return
+//                }
+//                print("Используем userId: \(userId)")
+//                
+//                for task in remoteTasks {
+//                    // Создаём новую задачу с правильным userId
+//                    let newTask = TodoTask(
+//                        userId: userId,
+//                        title: task.title,
+//                        date: task.date,
+//                        cost: task.cost,
+//                        isCompleted: task.isCompleted,
+//                        createdAt: task.createdAt,
+//                        updatedAt: task.updatedAt,
+//                        isSynced: false // пока не синхронизирована
+//                    )
+//                    try await repository.createTask(newTask)
+//                    print("5 Задача создана локально и отправлена в Firestore")
+//                }
+//                try fetchTasks()
+//                print("6 Локальные задачи обновлены")
+//            }
             print("7 Начинаем pullFromFirestore")
             try await repository.pullFromFirestore()
             print("8 Pull завершён")
@@ -158,7 +158,7 @@ final class ExpensePlannerViewModel {
     }
     
     
-    func addTask(title: String, cost: Int, date: Date) async throws {
+    func addTask(title: String, cost: Int, date: Date, category: String = "other", description: String = "") async throws {
         guard let userId = Auth.auth().currentUser?.uid else {
                    throw NSError(domain: "AuthError", code: 401, userInfo: [NSLocalizedDescriptionKey: "Пользователь не авторизован"])
                }
@@ -170,9 +170,23 @@ final class ExpensePlannerViewModel {
             isCompleted: false,
             createdAt: Date(),
             updatedAt: Date(),
-            isSynced: false
+            isSynced: false,
+            category: category,
+            taskDescription: description
+            
         )
         try await repository.createTask(task)
+        try fetchTasks()
+    }
+    
+    
+    func deleteTask(_ task: TodoTask) async throws {
+        try await repository.deleteTask(task)
+        try fetchTasks()
+    }
+    
+    func updateTask(_ task: TodoTask) async throws {
+        try await repository.updateTask(task)
         try fetchTasks()
     }
     

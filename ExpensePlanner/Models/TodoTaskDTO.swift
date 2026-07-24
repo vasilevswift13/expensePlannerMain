@@ -18,9 +18,11 @@ struct TodoTaskDTO: Codable {
     let cost: Int
     let createdAt: Date
     let updatedAt: Date
+    let category: String
+    let description: String
 
     enum CodingKeys: String, CodingKey {
-        case id, userId, title, completed, date, cost, createdAt, updatedAt
+        case id, userId, title, completed, date, cost, createdAt, updatedAt, category, description
     }
 
     init(from decoder: Decoder) throws {
@@ -52,6 +54,9 @@ struct TodoTaskDTO: Codable {
         cost = try container.decodeIfPresent(Int.self, forKey: .cost) ?? 0
         createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt) ?? Date()
         updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt) ?? Date()
+        
+        category = try container.decodeIfPresent(String.self, forKey: .category) ?? "other"
+        description = try container.decodeIfPresent(String.self, forKey: .description) ?? ""
     }
 
     func encode(to encoder: Encoder) throws {
@@ -64,5 +69,7 @@ struct TodoTaskDTO: Codable {
         try container.encode(cost, forKey: .cost)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
+        try container.encode(category, forKey: .category)
+        try container.encode(description, forKey: .description)
     }
 }

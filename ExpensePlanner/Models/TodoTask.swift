@@ -20,8 +20,11 @@ final class TodoTask: Identifiable {
     var createdAt: Date
     var updatedAt: Date // дата последнего изменения 
     var isSynced: Bool // флаг синхронизации - true — отправлено на сервер
+    
+    var category: String = "other"
+    var taskDescription: String = ""
 
-    init(userId: String, title: String, date: Date, cost: Int, isCompleted: Bool, createdAt: Date, updatedAt: Date, isSynced: Bool = false) {
+    init(userId: String, title: String, date: Date, cost: Int, isCompleted: Bool, createdAt: Date, updatedAt: Date, isSynced: Bool = false, category: String = "other", taskDescription: String = "") {
         self.title = title
         self.date = date
         self.cost = cost
@@ -30,7 +33,8 @@ final class TodoTask: Identifiable {
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.isSynced = isSynced
-        
+        self.category = category
+        self.taskDescription = taskDescription
     }
 }
 

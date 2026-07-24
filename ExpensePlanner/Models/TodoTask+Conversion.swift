@@ -18,6 +18,8 @@ extension TodoTaskDTO {
         self.cost = task.cost
         self.createdAt = task.createdAt
         self.updatedAt = task.updatedAt
+        self.category = task.category
+        self.description = task.taskDescription
     }
 }
 
@@ -34,7 +36,9 @@ extension TodoTask {
             isCompleted: dto.completed,
             createdAt: dto.createdAt,
             updatedAt: dto.updatedAt,
-            isSynced: true
+            isSynced: true,
+            category: dto.category,
+            taskDescription: dto.description
         )
     }
 }

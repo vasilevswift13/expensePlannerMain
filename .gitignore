@@ -61,3 +61,6 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 .DS_Store
+ExpensePlanner/Models/AddTaskView.swift
+ExpensePlanner/Styles/TodoTaskRow.swift
+ExpensePlanner/Screens/ViewModels/AddTaskView.swift
